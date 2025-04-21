@@ -1,27 +1,65 @@
-import SQLite from 'react-native-sqlite-storage';
+import * as SQLite from 'expo-sqlite';
 
-const db = SQLite.openDatabase(
-  { name: 'FoodJournal.db', location: 'default' },
-  () => console.log('Database connected'),
-  (error) => console.log('Database error', error)
-);
+// Database instance with initialization flag
+let db;
+let isInitialized = false;
 
-const initDatabase = () => {
-  db.transaction((tx) => {
-    tx.executeSql(
-      'CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, email TEXT, password TEXT);',
-      [],
-      () => console.log('Users table created'),
-      (error) => console.log('Error creating users table', error)
-    );
-
-    tx.executeSql(
-      'CREATE TABLE IF NOT EXISTS journals (id INTEGER PRIMARY KEY AUTOINCREMENT, userId INTEGER, image TEXT, description TEXT, date TEXT, category TEXT);',
-      [],
-      () => console.log('Journals table created'),
-      (error) => console.log('Error creating journals table', error)
-    );
-  });
+// Initialize the database
+const initDatabase = async () => {
+  try {
+    if (isInitialized) return db;
+    
+    // Open database connection
+    db = await SQLite.openDatabaseAsync('FoodJournal.db');
+    
+    // Create tables
+    await db.execAsync('PRAGMA journal_mode = WAL');
+    
+    await db.withTransactionAsync(async (tx) => {
+      await tx.execAsync(
+        `CREATE TABLE IF NOT EXISTS users (
+          id INTEGER PRIMARY KEY AUTOINCREMENT, 
+          email TEXT UNIQUE, 
+          password TEXT
+        );`
+      );
+      
+      await tx.execAsync(
+        `CREATE TABLE IF NOT EXISTS journals (
+          id INTEGER PRIMARY KEY AUTOINCREMENT, 
+          userId INTEGER, 
+          image TEXT, 
+          description TEXT, 
+          date TEXT, 
+          category TEXT, 
+          FOREIGN KEY(userId) REFERENCES users(id)
+        );`
+      );
+    });
+    
+    isInitialized = true;
+    console.log('Database initialized successfully');
+    return db;
+  } catch (error) {
+    console.error('Database initialization error:', error);
+    throw error;
+  }
 };
 
-export { db, initDatabase };
+// Execute SQL queries with automatic initialization
+const executeSql = async (query, params = []) => {
+  try {
+    if (!isInitialized) {
+      await initDatabase();
+    }
+    
+    return await db.withTransactionAsync(async (tx) => {
+      return await tx.execAsync(query, params);
+    });
+  } catch (error) {
+    console.error('SQL execution error:', error);
+    throw error;
+  }
+};
+
+export { initDatabase, executeSql };
