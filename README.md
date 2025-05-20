@@ -135,8 +135,7 @@ import {Button} from 'react-native';
 ![typeisinvalid.png](readme/typeisinvalid.png)
 
 ` (NOBRIDGE) WARN  [expo-image-picker] `ImagePicker.MediaTypeOptions` have been deprecated. Use `ImagePicker.MediaType` or an array of `ImagePicker.MediaType` instead.`
-
-<img alt="" src="readme/have-been-deprecated.png" width="350">
+![typeisinvalid.png](readme/have-been-deprecated.png)
 
 [Expo-Camera](https://docs.expo.dev/versions/latest/sdk/camera/)
 
