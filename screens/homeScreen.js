@@ -29,7 +29,7 @@ const HomeScreen = ({route}) => {
     const [description, setDescription] = useState('');
     const [journals, setJournals] = useState([]);
     const [editingId, setEditingId] = useState(null);
-    const [category, setCategory] = useState('All');
+    const [category, setCategory] = useState(null);
     const [filter, setFilter] = useState('All');
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -115,6 +115,11 @@ const HomeScreen = ({route}) => {
             return;
         }
 
+        if (!category){
+            Alert.alert('Validation Error', 'Please select a category');
+            return;
+        }
+
         try {
             const userId = route.params?.userId;
             if (!userId) {
@@ -188,7 +193,7 @@ const HomeScreen = ({route}) => {
         setImage(null);
         setDescription('');
         setEditingId(null);
-        setCategory('All');
+        setCategory(null);
     };
 
     // Filter journals by category
