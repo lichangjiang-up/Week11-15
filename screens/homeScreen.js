@@ -31,8 +31,8 @@ const HomeScreen = ({route}) => {
     const [description, setDescription] = useState('');
     const [journals, setJournals] = useState([]);
     const [editingId, setEditingId] = useState(null);
-    const [category, setCategory] = useState(filters[1]);
-    const [filter, setFilter] = useState('All');
+    const [category, setCategory] = useState(filters[0]);
+    const [filter, setFilter] = useState(filters[0]);
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -393,7 +393,7 @@ const HomeScreen = ({route}) => {
                         selectedValue={category}
                         onValueChange={(itemValue) => setCategory(itemValue)}
                         style={styles.picker}>
-                        {filters.slice(1).map((cat) => (
+                        {filters.map((cat) => (
                             <Picker.Item key={cat} label={cat} value={cat}/>
                         ))}
                     </Picker>
