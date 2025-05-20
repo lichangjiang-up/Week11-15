@@ -13,7 +13,7 @@ npm install
 run command: `npm run android` | `expo start`
 
 **Debug run time error**
-![RNGestureHandlerModule-Err.png](readme/RNGestureHandlerModule-Err.png)
+<img src="readme/RNGestureHandlerModule-Err.png" width="350">
 
 ```log
 (NOBRIDGE) ERROR  Invariant Violation: TurboModuleRegistry.getEnforcing(...): 'RNGestureHandlerModule' could not be found. Verify that a module by this name is registered in the native binary.
@@ -27,11 +27,10 @@ run command: `npx expo install react-native-gesture-handler`
 
 ## 2.1 TypeError: Cannot read property 'execAsync' of undefined
 
-![execAsync-of-undefined.png](readme/execAsync-of-undefined.png)
+<img src="readme/execAsync-of-undefined.png" width="350">
 `Database initialization error: [TypeError: Cannot read property 'execAsync' of undefined]`
 `Initialization error: [TypeError: Cannot read property 'execAsync' of undefined]`
-
-![create-dir-err.png](readme/create-dir-err.png)
+<img src="readme/create-dir-err.png" width="350">
 `npx expo install expo-sqlite`
 
 `npx expo prebuild --clean`
@@ -54,7 +53,8 @@ await db.withTransactionAsync(async () => {
 
 ## 2.2 TypeError: Cannot read property 'xxx' of undefined
 
-![xxxx-of-undefined.png](readme/xxxx-of-undefined.png)
+<img src="readme/xxxx-of-undefined.png" width="350">
+
 `Database error: [TypeError: Cannot read property 'rows' of undefined]`
 
 `TypeError: Cannot read property 'insertId' of undefined`
@@ -82,7 +82,7 @@ const executeSql = async (query, params = [], isFirst = false) => {
 ```
 
 `ERROR Database error: [TypeError: Cannot read property 'length' of undefined]
-![length-of-undefined.png](readme/length-of-undefined.png)
+<img src="readme/length-of-undefined.png" width="350">
 
 **try fix:**`components/auth/authScreen.js`
 
@@ -121,7 +121,7 @@ const executeSql = async (query, params = [], isFirst = false) => {
 
 ## 2.3 ERROR  Warning: ReferenceError: Property 'Button' doesn't exist
 
-![button-doesn't-exist.png](readme/button-doesn%27t-exist.png)
+<img src="readme/button-doesnt-exist.png" alt="" width="350">
 
 ```js
 import {Button} from 'react-native';
@@ -132,11 +132,12 @@ import {Button} from 'react-native';
 ## 3.1 ERROR  Warning: React.jsx: type is invalid
 
 `ERROR  Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: object.`
-![typeisinvalid.png](readme/typeisinvalid.png)
+
+<img src="readme/typeisinvalid.png" width="350">
 
 ` (NOBRIDGE) WARN  [expo-image-picker] `ImagePicker.MediaTypeOptions` have been deprecated. Use `ImagePicker.MediaType` or an array of `ImagePicker.MediaType` instead.`
 
-![have-been-deprecated.png](readme/have-been-deprecated.png)
+<img alt="" src="readme/have-been-deprecated.png" width="350">
 
 [Expo-Camera](https://docs.expo.dev/versions/latest/sdk/camera/)
 
@@ -264,7 +265,7 @@ const result = await ImagePicker.launchImageLibraryAsync({
 
 ## 4.2 Picker anomaly coupling
 
-![picker-anomaly-coupling.png](readme/picker-anomaly-coupling.png)
+<img alt="" width="350" src="readme/picker-anomaly-coupling.png">
 
 **Try fix** `screens/homeScreen.js`:
 ```jsx
