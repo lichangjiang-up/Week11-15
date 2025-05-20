@@ -55,6 +55,7 @@ await db.withTransactionAsync(async () => {
 ## 2.2 TypeError: Cannot read property 'xxx' of undefined
 
 ![xxxx-of-undefined.png](readme/xxxx-of-undefined.png)
+
 `Database error: [TypeError: Cannot read property 'rows' of undefined]`
 
 `TypeError: Cannot read property 'insertId' of undefined`
