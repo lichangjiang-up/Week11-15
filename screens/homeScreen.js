@@ -194,7 +194,7 @@ const HomeScreen = ({route}) => {
         setImage(null);
         setDescription('');
         setEditingId(null);
-        setCategory(filters[1]);
+        setCategory(filters[0]);
     };
 
     // Filter journals by category
