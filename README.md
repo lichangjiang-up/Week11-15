@@ -82,7 +82,7 @@ const executeSql = async (query, params = [], isFirst = false) => {
 };
 ```
 
-`ERROR Database error: [TypeError: Cannot read property 'length' of undefined]
+`ERROR Database error: [TypeError: Cannot read property 'length' of undefined]`
 ![length-of-undefined.png](readme/length-of-undefined.png)
 
 **try fix:**`components/auth/authScreen.js`
