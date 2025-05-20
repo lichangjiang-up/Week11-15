@@ -21,6 +21,8 @@ import {executeSql} from '../components/database/database';
 import {Picker} from '@react-native-picker/picker';
 
 const HomeScreen = ({route}) => {
+    // filters for filtering
+    const filters = ['All', 'Breakfast', 'Lunch', 'Dinner', 'Snacks'];
     // State management
     const scrollViewRef = useRef(null);
     const [cameraPermission, cameraRequestPermission] = useCameraPermissions();
@@ -29,13 +31,12 @@ const HomeScreen = ({route}) => {
     const [description, setDescription] = useState('');
     const [journals, setJournals] = useState([]);
     const [editingId, setEditingId] = useState(null);
-    const [category, setCategory] = useState(null);
+    const [category, setCategory] = useState(filters[1]);
     const [filter, setFilter] = useState('All');
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Categories for filtering
-    const categories = ['All', 'Breakfast', 'Lunch', 'Dinner', 'Snacks'];
+
 
     // Initialize camera and load journals
     useEffect(() => {
@@ -193,7 +194,7 @@ const HomeScreen = ({route}) => {
         setImage(null);
         setDescription('');
         setEditingId(null);
-        setCategory(null);
+        setCategory(filters[1]);
     };
 
     // Filter journals by category
@@ -259,7 +260,7 @@ const HomeScreen = ({route}) => {
                         onValueChange={(itemValue) => setFilter(itemValue)}
                         itemStyle={styles.pickerItem}
                         style={styles.picker}>
-                        {categories.map((cat) => (
+                        {filters.map((cat) => (
                             <Picker.Item key={cat} label={cat} value={cat}/>
                         ))}
                     </Picker>
@@ -392,7 +393,7 @@ const HomeScreen = ({route}) => {
                         selectedValue={category}
                         onValueChange={(itemValue) => setCategory(itemValue)}
                         style={styles.picker}>
-                        {categories.map((cat) => (
+                        {filters.slice(1).map((cat) => (
                             <Picker.Item key={cat} label={cat} value={cat}/>
                         ))}
                     </Picker>
